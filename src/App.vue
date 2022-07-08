@@ -1,30 +1,36 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <a-layout style="min-height: 100vh">
+    <!-- Menu -->
+    <Menu v-model:collapsed="collapsed" v-model:selectedKeys="selectedKeys" />
+    <a-layout>
+      <!-- Header -->
+      <Header v-model:collapsed="collapsed" />
+      <!-- Content -->
+      <Content />
+    </a-layout>
+  </a-layout>
 </template>
+<script>
+import { defineComponent, ref } from "vue";
+import Menu from "@/components/core/Menu.vue";
+import Header from "@/components/core/Header.vue";
+import Content from "@/components/core/Content.vue";
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+export default defineComponent({
+  components: {
+    Menu,
+    Header,
+    Content,
+  },
 
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
+  setup() {
+    return {
+      selectedKeys: ref(["1"]),
+      collapsed: ref(false),
+    };
+  },
+});
+</script>
+<style scoped>
+@import "@/css/styles.css";
 </style>
