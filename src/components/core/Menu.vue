@@ -1,9 +1,8 @@
 <template>
-  
-    <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
-      <div class="logo" />
-      <a-button @click="toggleCollapse">X</a-button>
-      <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
+  <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible style="background: #003147;">
+    <div class="logo" />
+    <a-button @click="toggleCollapse">X</a-button>
+    <!-- <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
         <a-menu-item key="1">
           <user-outlined />
           <span>nav 1</span>
@@ -16,39 +15,91 @@
           <upload-outlined />
           <span>nav 3</span>
         </a-menu-item>
-      </a-menu>
-    </a-layout-sider>
-  
+      </a-menu> -->
+    <a-menu
+      v-model:openKeys="openKeys"
+      v-model:selectedKeys="selectedKeys"
+      mode="inline"
+      theme="dark"
+    >
+      <a-menu-item key="1">
+        <template #icon>
+          <UserOutlined />
+        </template>
+        356678
+      </a-menu-item>
+      <a-menu-item key="2">
+        <template #icon>
+          <CalendarOutlined />
+        </template>
+        ใบเดิมพัน รายการ
+      </a-menu-item>
+      <a-sub-menu key="sub1">
+        <template #icon>
+          <AppstoreOutlined />
+        </template>
+        <template #title>ฟุตบอลโลก</template>
+        <a-menu-item key="3">ล่วงหน้า วันนี้ สด</a-menu-item>
+        <a-menu-item key="4">ฟุตบอล</a-menu-item>
+        <a-menu-item key="5">ทั้งหมด</a-menu-item>
+        <a-menu-item key="6">คะแนนที่ถูกต้อง</a-menu-item>
+        <a-menu-item key="7">คู่/คี่</a-menu-item>
+        <a-menu-item key="8">จำนวนรวมของประตู</a-menu-item>
+        <a-menu-item key="9">ครึ่งแรก/เต็มเวลา</a-menu-item>
+        <a-menu-item key="10">ประตูแรก/ประตูสุดท้าย</a-menu-item>
+      </a-sub-menu>
+      <a-sub-menu key="sub2">
+        <template #icon>
+          <SettingOutlined />
+        </template>
+        <template #title>กีฬา</template>
+        <a-menu-item key="11">Option 7</a-menu-item>
+        <a-menu-item key="12">Option 8</a-menu-item>
+        <a-menu-item key="13">Option 9</a-menu-item>
+        <a-menu-item key="14">Option 10</a-menu-item>
+      </a-sub-menu>
+      <a-sub-menu key="sub3">
+        <template #icon>
+          <SettingOutlined />
+        </template>
+        <template #title>อีสปอร์ต</template>
+        <a-menu-item key="15">Option 7</a-menu-item>
+        <a-menu-item key="15">Option 8</a-menu-item>
+        <a-menu-item key="16">Option 9</a-menu-item>
+        <a-menu-item key="17">Option 10</a-menu-item>
+      </a-sub-menu>
+    </a-menu>
+  </a-layout-sider>
 </template>
 
 <script>
 import {
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
   MailOutlined,
-  QqOutlined,
+  CalendarOutlined,
   AppstoreOutlined,
   SettingOutlined,
+  UserOutlined,
 } from "@ant-design/icons-vue";
-import { defineComponent, ref, watch } from "vue";
+import { defineComponent, reactive, toRefs } from "vue";
 
 export default defineComponent({
   components: {
-    UserOutlined,
-    VideoCameraOutlined,
-    UploadOutlined,
     MailOutlined,
-    QqOutlined,
+    CalendarOutlined,
     AppstoreOutlined,
     SettingOutlined,
+    UserOutlined,
   },
   props: ["collapsed"],
   setup(props, { emit }) {
+    const state = reactive({
+      selectedKeys: ["1"],
+      openKeys: ["sub1"],
+    });
     const toggleCollapse = () => {
       emit("update:collapsed", !props.collapsed);
     };
-    return { toggleCollapse };
+    return { toggleCollapse, ...toRefs(state) };
   },
 });
 </script>

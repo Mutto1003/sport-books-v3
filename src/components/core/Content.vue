@@ -7,7 +7,7 @@
       minHeight: '280px',
     }"
   >
-    Content
+    
   </a-layout-content>
 </template>
 
