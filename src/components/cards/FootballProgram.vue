@@ -1,27 +1,9 @@
 <template>
-  <a-card style="background-color: #5574A7; text-align: center; color:red;" title="รายการคู่เตะวันนี้">
-    <p
-      style="
-        font-size: 14px;
-        color: rgba(0, 0, 0, 0.85);
-        margin-bottom: 16px;
-        font-weight: 500;
-      "
-    >
-      Group title
-    </p>
-    <a-card title="Inner card title">
-      <template #extra>
-        <a href="#">More</a>
-      </template>
-      Inner Card content
-    </a-card>
-    <a-card title="Inner card title" :style="{ marginTop: '16px' }">
-      <template #extra>
-        <a href="#">More</a>
-      </template>
-      Inner Card content
-    </a-card>
+  <a-card style="background-color: #e7e7ff" title="รายการวันนี้">
+    <a-card class="bg-card"> Inner Card content </a-card>
+    <a-card> Inner Card content </a-card>
+    <a-card> Inner Card content </a-card>
+    <a-card> Inner Card content </a-card>
   </a-card>
 </template>
 
@@ -34,5 +16,9 @@ export default defineComponent({
 </script>
 
 <style scoped>
-@import "@/css/styles.css";
+/* @import "@/css/styles.css"; */
+.ant-card-body {
+  background: #4caf50;
+  /* border: 1px solid #4CAF50; */
+}
 </style>

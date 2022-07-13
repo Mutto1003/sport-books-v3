@@ -1,4 +1,6 @@
 <template>
+  <PageHeader />
+  <br />
   <a-row type="flex">
     <a-col flex="1 1 200px">
       <Live />
@@ -18,6 +20,7 @@
 </template>
 
 <script>
+import PageHeader from "@/components/cards/PageHeader.vue";
 import CorrectScoreTable from "@/components/table/CorrectScoreTable.vue";
 import Live from "@/components/cards/Live.vue";
 import VariouRresults from "@/components/cards/VariouRresults.vue";
@@ -26,6 +29,7 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   components: {
+    PageHeader,
     CorrectScoreTable,
     Live,
     VariouRresults,

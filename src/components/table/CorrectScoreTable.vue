@@ -5,71 +5,55 @@
         <a>{{ text }}</a>
       </template>
     </template>
-    <template #title>ออสเตรเลีย ฟุตบอล ควีนส์แลนด์ พรีเมียร์ลีก 2</template>
+    <template #title>Header</template>
+    <template #footer>Footer</template>
   </a-table>
 </template>
-
 <script>
 import { defineComponent } from "vue";
-const columns = [
-  {
-    title: "รายการ",
-    dataIndex: "name",
-  },
-  {
-    title: "0-1",
-    className: "column-money",
-    dataIndex: "money",
-  },
-  {
-    title: "0-2",
-    dataIndex: "address",
-  },
-  {
-    title: "0-2",
-    dataIndex: "address",
-  },
-  {
-    title: "0-2",
-    dataIndex: "address",
-  },
-  {
-    title: "0-2",
-    dataIndex: "address",
-  },
-  {
-    title: "0-2",
-    dataIndex: "address",
-  },
-  {
-    title: "0-2",
-    dataIndex: "address",
-  },
-  {
-    title: "0-2",
-    dataIndex: "address",
-  },
-  {
-    title: "0-2",
-    dataIndex: "address",
-  },
-];
-const data = [
-  {
-    key: "1",
-    name: "John Brown VS John Brown",
-    money: "",
-    address: "",
-  },  
-];
+const columns = [{
+  title: 'Name',
+  dataIndex: 'name',
+}, {
+  title: 'Cash Assets',
+  className: 'column-money',
+  dataIndex: 'money',
+}, {
+  title: 'Address',
+  dataIndex: 'address',
+}];
+const data = [{
+  key: '1',
+  name: 'John Brown',
+  money: '￥300,000.00',
+  address: 'New York No. 1 Lake Park',
+}, {
+  key: '2',
+  name: 'Jim Green',
+  money: '￥1,256,000.00',
+  address: 'London No. 1 Lake Park',
+}, {
+  key: '3',
+  name: 'Joe Black',
+  money: '￥120,000.00',
+  address: 'Sidney No. 1 Lake Park',
+}];
 
 export default defineComponent({
   setup() {
-    return { data, columns };
+    return {
+      data,
+      columns,
+    };
   },
 });
 </script>
 
 <style scoped>
 @import "@/css/styles.css";
+th.column-title,
+td.column-title {
+  text-align: right !important;
+  border-color: chartreuse;
+}
 </style>

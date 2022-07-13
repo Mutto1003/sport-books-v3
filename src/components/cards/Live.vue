@@ -1,12 +1,14 @@
 <template>
   <a-collapse v-model:activeKey="activeKey">
-    <a-collapse-panel class="text-dark" key="1" header="ถ่ายทอดสดผ่านเว็บ">
-      <p class="text-dark">{{ text }}</p>
+    <a-collapse-panel key="1" header="ถ่ายทอดสดผ่านเว็บ">
+      <!-- <p class="text-dark crad-live">{{ text }}</p> -->
+      <a-empty class="crad-live"/>  
     </a-collapse-panel>
   </a-collapse>
 </template>
 
 <script>
+import { Empty } from 'ant-design-vue';
 import { defineComponent, ref, watch } from "vue";
 
 export default defineComponent({
@@ -19,6 +21,7 @@ export default defineComponent({
     return {
       text,
       activeKey,
+      simpleImage: Empty.PRESENTED_IMAGE_SIMPLE,
     };
   },
 });

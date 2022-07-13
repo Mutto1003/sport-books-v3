@@ -17,12 +17,11 @@
 }
 
 #app {
-  font-family: 'Bai Jamjuree', sans-serif;
-  /* font-family: 'Sriracha', cursive; */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Bai Jamjuree", sans-serif;
+  /* -webkit-font-smoothing: antialiased; */
+  /* -moz-osx-font-smoothing: grayscale; */
   /* text-align: center; */
-  color: #2c3e50;
+  color: #000000;
 }
 
 .site-layout .site-layout-background {
@@ -46,15 +45,32 @@
   border: 3px solid green;
 }
 
-/* Table */
+/* Table */ /* Modify list text and background color   */
 th.column-money,
 td.column-money {
-  text-align: left !important;
+  text-align: right !important;
+}
+.ant-table-content {
+  background-color: #fceee2;
+  /* color: rgb(127, 127, 127); */
+  /* border: 1px solid #D59C6F; */
+}
+.ant-table-thead {
+  /* color: white; */
+  background: #3071b9 !important;
+  border: 1px solid #3071b9;
 }
 
 /* crad Live */
-.ant-card-body {
-  background: #FCEEE2;
+.crad-live {
+  height: 350px;
+  width: 100%;
+  /* border: 1px solid #e7e7ff; */
+}
+.ant-collapse-header {
+  background: #5574a7;
+  /* text-align: center; */
+  color: #fff;
 }
 
 /* Hesder Menu */
@@ -64,6 +80,17 @@ td.column-money {
   background: rgba(128, 128, 128, 0.08);
 }
 
+.ant-card-body {
+  background: #e7e7ff;
+  /* border: 1px solid #4CAF50; */
+}
+
 .text-dark {
-	color: #050c11;
+  color: #050c11;
+}
+
+/* FootballProgram */
+.bg-card {
+  background: #251f19;
+  border: 1px solid #0a0b0a;
 }
