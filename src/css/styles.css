@@ -51,3 +51,19 @@ th.column-money,
 td.column-money {
   text-align: left !important;
 }
+
+/* crad Live */
+.ant-card-body {
+  background: #FCEEE2;
+}
+
+/* Hesder Menu */
+
+/* card VariouRresults */
+#components-grid-demo-flex :deep(.ant-row) {
+  background: rgba(128, 128, 128, 0.08);
+}
+
+.text-dark {
+	color: #050c11;
+}

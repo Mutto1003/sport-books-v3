@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import SportBet from "@/components/pages/SportBet.vue";
+import SportBet from "@/views/SportBet.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({

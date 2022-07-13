@@ -1,5 +1,5 @@
 <template>
-  <a-card title="รายการคู่เตะวันนี้">
+  <a-card style="background-color: #5574A7; text-align: center; color:red;" title="รายการคู่เตะวันนี้">
     <p
       style="
         font-size: 14px;

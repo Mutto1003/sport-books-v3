@@ -19,8 +19,8 @@
 
 <script>
 import CorrectScoreTable from "@/components/table/CorrectScoreTable.vue";
-import Live from "@/components/live/Live.vue";
-import VariouRresults from "@/components/results/VariouRresults.vue";
+import Live from "@/components/cards/Live.vue";
+import VariouRresults from "@/components/cards/VariouRresults.vue";
 import FootballProgram from "@/components/cards/FootballProgram.vue";
 import { defineComponent } from "vue";
 
