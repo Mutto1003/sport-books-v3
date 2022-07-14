@@ -5,8 +5,8 @@
         <a>{{ text }}</a>
       </template>
     </template>
-    <template #title>Header</template>
-    <template #footer>Footer</template>
+    <template  #title>Header</template>
+    <!-- <template #footer>Footer</template> -->
   </a-table>
 </template>
 <script>

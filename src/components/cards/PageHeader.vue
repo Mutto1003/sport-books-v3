@@ -1,9 +1,5 @@
 <template>
-  <a-page-header
-    style="border: 1px solid rgb(235, 237, 240)"    
-    :breadcrumb="{ routes }"
-    
-  />
+  <a-page-header :breadcrumb="{ routes }" />
 </template>
 <script>
 import { defineComponent } from "vue";

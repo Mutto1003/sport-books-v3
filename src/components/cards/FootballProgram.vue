@@ -1,24 +1,42 @@
 <template>
-  <a-card style="background-color: #e7e7ff" title="รายการวันนี้">
-    <a-card class="bg-card"> Inner Card content </a-card>
-    <a-card> Inner Card content </a-card>
-    <a-card> Inner Card content </a-card>
-    <a-card> Inner Card content </a-card>
-  </a-card>
+  <a-collapse v-model:activeKey="activeKey">
+    <a-collapse-panel key="1" header="รายการวันนี้">
+      <!-- <p>{{ text }}</p> -->
+      <p class="bg-card">แมนยู vs ลิเวอร์พูล <FieldTimeOutlined />  02.30 PM</p>
+      <p class="bg-card">แมนยู vs ลิเวอร์พูล <FieldTimeOutlined />  02.30 PM</p>
+      <p class="bg-card">แมนยู vs ลิเวอร์พูล <FieldTimeOutlined />  02.30 PM</p>
+      <p class="bg-card">แมนยู vs ลิเวอร์พูล <FieldTimeOutlined />  02.30 PM</p>
+      <p class="bg-card">แมนยู vs ลิเวอร์พูล <FieldTimeOutlined />  02.30 PM</p>
+      <p class="bg-card">แมนยู vs ลิเวอร์พูล <FieldTimeOutlined />  02.30 PM</p>
+      <p class="bg-card">แมนยู vs ลิเวอร์พูล <FieldTimeOutlined />  02.30 PM</p>
+    </a-collapse-panel>
+  </a-collapse>
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { FieldTimeOutlined } from "@ant-design/icons-vue";
+import { defineComponent, ref, watch } from "vue";
 
 export default defineComponent({
-  setup() {},
+  components: {
+    FieldTimeOutlined,
+  },
+  setup() {
+    // const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`;
+    const activeKey = ref(["1"]);
+
+    watch(activeKey, (val) => {
+      console.log(val);
+    });
+
+    return {
+      // text,
+      activeKey,
+    };
+  },
 });
 </script>
 
 <style scoped>
 /* @import "@/css/styles.css"; */
-.ant-card-body {
-  background: #4caf50;
-  /* border: 1px solid #4CAF50; */
-}
 </style>

@@ -7,17 +7,20 @@
       minHeight: '280px',
     }"
   >
-    <SportBet />
+    <!-- <SportBet /> -->
+    <Brokerbet />
   </a-layout-content>
 </template>
 
 <script>
 import SportBet from "@/views/SportBet.vue";
+import Brokerbet from "@/views/Brokerbet.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
   components: {
     SportBet,
+    Brokerbet
   },
   setup() {},
 });
