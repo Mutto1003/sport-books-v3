@@ -19,7 +19,7 @@ export default defineComponent({
 /* @import "@/css/styles.css"; */
 .ant-carousel :deep(.slick-slide) {
   text-align: center;
-  height: 300px;
+  height: 350px;
   line-height: 160px;
   background: #364d79;
   /* border-radius: 8px; */

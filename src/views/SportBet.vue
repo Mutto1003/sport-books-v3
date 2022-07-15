@@ -43,4 +43,9 @@ export default defineComponent({
 
 <style scoped>
 @import "@/css/styles.css";
+.ant-collapse-header {
+  background: #5574a7;
+  /* text-align: center; */
+  color: #fff;
+}
 </style>
