@@ -97,7 +97,7 @@ td.column-money {
   width: 100%;
   height: 35px;
   color: #ffff;
-  padding: 4px;
+  /* padding: 4px; */
   text-align: center;
 }
 
@@ -113,4 +113,24 @@ td.column-money {
 
 .ant-carousel :deep(.slick-slide h3) {
   color: #fff;
+}
+
+/* LiveScore */
+.menu-card {
+  background: #003147;
+  border: 1px solid #003147;
+  border-radius: 4px;
+  width: 100%;
+  height: 40px;
+  color: #ffff;
+  padding: 4px;
+  margin-top: 1em;
+  text-align: center;
+}
+
+.live-card {
+  background: #fceee2;
+  border-radius: 8px;
+  margin-top: 1em;
+  color: #ffff;
 }

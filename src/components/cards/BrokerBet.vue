@@ -5,6 +5,7 @@
         style="width: 100%; padding: 5px"
         alt="example"
         src="@/assets/188BET.png"
+        @click="$router.push('/sportBet')"
       />
     </a-col>
     <a-col :span="4">

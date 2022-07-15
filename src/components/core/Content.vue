@@ -7,7 +7,8 @@
       minHeight: '280px',
     }"
   >
-    <Home />
+  <router-view />
+    <!-- <Home /> -->
     <!-- <SportBet /> -->
     <!-- <Brokerbet /> -->
   </a-layout-content>
