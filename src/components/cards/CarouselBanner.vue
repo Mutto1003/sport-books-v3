@@ -1,9 +1,11 @@
 <template>
   <a-carousel autoplay>
-    <div><h3>1</h3></div>
-    <div><h3>2</h3></div>
-    <div><h3>3</h3></div>
-    <div><h3>4</h3></div>
+    <div>
+      <img  style="width: 100%;  padding: 5px" alt="example" src="@/assets/banner.jpeg" />
+    </div>
+    <div><img  style="width: 100%;  padding: 5px" alt="example" src="@/assets/banner2.jpg" /></div>
+    <div><img  style="width: 100%;  padding: 5px" alt="example" src="@/assets/banner.jpeg" /></div>
+    <div><img  style="width: 100%;  padding: 5px" alt="example" src="@/assets/banner2.jpg" /></div>
   </a-carousel>
 </template>
 

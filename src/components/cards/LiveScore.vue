@@ -25,7 +25,7 @@
     item-layout="horizontal"
     :data-source="list"
   >
-    <template #loadMore>
+    <!-- <template #loadMore>
       <div
         v-if="!initLoading && !loading"
         :style="{
@@ -37,7 +37,7 @@
       >
         <a-button @click="onLoadMore">loading more</a-button>
       </div>
-    </template>
+    </template> -->
     <template #renderItem="{ item }">
       <a-list-item class="live-card">
         <template #actions>
@@ -47,15 +47,25 @@
         <a-skeleton avatar :title="false" :loading="!!item.loading" active>
           <a-list-item-meta>
             <template #title>
-              <a href="https://www.antdv.com/">{{ "แมนยู VS ลิวเวอร์พูล" }}</a>
+              <a href="">{{ item.fixture.Participants[0].Name }} VS {{item.fixture.Participants[1].Name}}</a><br>
+              <!-- <a href="">{{ item.live_score.Scoreboard.Results[0].Position }} - {{item.live_score.Scoreboard.Results[1].Position}}</a> -->
             </template>
             <template #avatar>
-              <a-avatar :src="item.picture.large" />
+              <a-avatar :src="item.league_name" />
+              <a-avatar :src="item.league_name" />
+              <!-- <p>{{ item.sport_id }}</p> -->
             </template>
           </a-list-item-meta>
           <div>
-            <EnvironmentOutlined /> London <FieldTimeOutlined /> 5:30 PM
-            <a-button @click="$router.push('/brokerbet')" type="primary" value="small" danger>BET</a-button>
+            <EnvironmentOutlined /> {{ item.fixture.Location.Name }}
+            <FieldTimeOutlined /> 5:30 PM
+            <a-button
+              @click="$router.push('/brokerbet')"
+              type="primary"
+              value="small"
+              danger
+              >BET</a-button
+            >
           </div>
         </a-skeleton>
       </a-list-item>
@@ -68,9 +78,11 @@ import {
   EnvironmentOutlined,
   FieldTimeOutlined,
 } from "@ant-design/icons-vue";
+import axios from "axios";
 import { defineComponent, onMounted, ref, nextTick } from "vue";
-const count = 3;
+const count = 4;
 const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
+const livescoreDataUrl = `http://49.0.193.193:8021/api/v1/feed/live_score/list`;
 export default defineComponent({
   components: {
     CalendarOutlined,
@@ -82,47 +94,41 @@ export default defineComponent({
     const loading = ref(false);
     const data = ref([]);
     const list = ref([]);
-    onMounted(() => {
-      fetch(fakeDataUrl)
-        .then((res) => res.json())
-        .then((res) => {
-          initLoading.value = false;
-          data.value = res.results;
-          list.value = res.results;
-        });
-    });
+    const team = ref([]);
 
-    const onLoadMore = () => {
-      loading.value = true;
-      list.value = data.value.concat(
-        [...new Array(count)].map(() => ({
-          loading: true,
-          name: {},
-          picture: {},
-        }))
-      );
-      fetch(fakeDataUrl)
-        .then((res) => res.json())
-        .then((res) => {
-          const newData = data.value.concat(res.results);
-          loading.value = false;
-          data.value = newData;
-          list.value = newData;
-          nextTick(() => {
-            // Resetting window's offsetTop so as to display react-virtualized demo underfloor.
-            // In real scene, you can using public method of react-virtualized:
-            // https://stackoverflow.com/questions/46700726/how-to-use-public-method-updateposition-of-react-virtualized
-            window.dispatchEvent(new Event("resize"));
-          });
-        });
-    };
+    // onMounted(() => {
+    //   fetch(livescoreDataUrl)
+    //     .then((res) => res.json())
+    //     .then((res) => {
+    //       initLoading.value = false;
+    //       data.value = res.data.live_scores;
+    //       list.value = res.data.live_scores;
+    //     });
+    //   console.log(data_score);
+    // });
+
+    onMounted(() => {
+      axios.get(livescoreDataUrl).then((res) => {
+        initLoading.value = false;
+        data.value = res.data.data.live_scores;
+        list.value = res.data.data.live_scores;   
+        // let itemTeam = [];     
+        // for (let i = 0; i < data.value.length; i++) {
+        //   console.log(data.value[i].fixture.Participants);          
+        //   itemTeam.push(data.value[i].fixture.Participants);
+        //   // console.log(JSON.stringify(this.Team));
+
+        // }
+      });
+      console.log(data);
+    });   
 
     return {
       loading,
       initLoading,
       data,
       list,
-      onLoadMore,
+      // onLoadMore,
     };
   },
 });

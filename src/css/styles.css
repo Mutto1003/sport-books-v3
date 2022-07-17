@@ -62,16 +62,7 @@ td.column-money {
 }
 
 /* crad Live */
-.crad-live {
-  height: 350px;
-  width: 100%;
-  /* border: 1px solid #e7e7ff; */
-}
-.ant-collapse-header {
-  background: #5574a7;
-  /* text-align: center; */
-  color: #fff;
-}
+
 
 /* Hesder Menu */
 
@@ -133,4 +124,9 @@ td.column-money {
   border-radius: 8px;
   margin-top: 1em;
   color: #ffff;
+}
+
+
+.ant-collapse-content > .ant-collapse-content-box {
+  padding: 0px;
 }

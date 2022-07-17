@@ -1,7 +1,8 @@
 <template>
   <a-collapse v-model:activeKey="activeKey">
-    <a-collapse-panel key="1" header="แนะนำ">
+    <a-collapse-panel style="background-color: #2dcc70" key="1" header="แนะนำ">
       <a-list
+        style="background-color: #2b2b3d"
         class="demo-loadmore-list"
         :loading="initLoading"
         item-layout="horizontal"
@@ -29,10 +30,13 @@
             <a-skeleton avatar :title="false" :loading="!!item.loading" active>
               <a-list-item-meta>
                 <template #title>
-                  <a href="https://www.antdv.com/">{{ item.name.last }}</a>
+                  <a style="color:#ffff;" href="https://www.antdv.com/">{{ item.name.last }}</a>
                 </template>
                 <template #avatar>
-                  <a-avatar :src="item.picture.large" />
+                  <a-avatar
+                    style="margin-left: 1em"
+                    :src="item.picture.large"
+                  />
                 </template>
               </a-list-item-meta>
               <!-- <div>content</div> -->
@@ -118,4 +122,7 @@ export default defineComponent({
 /* .demo-loadmore-list {
   min-height: 350px;
 } */
+.ant-collapse-content > .ant-collapse-content-box {
+  padding: 0px;
+}
 </style>

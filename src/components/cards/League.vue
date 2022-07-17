@@ -1,6 +1,6 @@
 <template>
   <a-collapse v-model:activeKey="activeKey">
-    <a-collapse-panel key="1" header="ลีค">
+    <a-collapse-panel style="background-color: #2B2B3D;" key="1" header="ลีค">
       <a-list
         class="demo-loadmore-list"
         :loading="initLoading"
@@ -49,6 +49,8 @@ import { FieldTimeOutlined } from "@ant-design/icons-vue";
 import { defineComponent, ref, watch, onMounted, nextTick } from "vue";
 const count = 10;
 const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
+const league_name = "";
+const leagueUrl = `http://49.0.193.193:8021/api/v1/feed/live_score/list`;
 export default defineComponent({
   components: {
     FieldTimeOutlined,
