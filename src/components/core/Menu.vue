@@ -1,5 +1,10 @@
 <template>
-  <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible style="background: #003147;">
+  <a-layout-sider
+    v-model:collapsed="collapsed"
+    :trigger="null"
+    collapsible
+    style="background: #003147"
+  >
     <div class="logo" />
     <a-button @click="toggleCollapse">X</a-button>
     <!-- <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
@@ -24,7 +29,7 @@
     >
       <a-menu-item key="1">
         <template #icon>
-          <UserOutlined />
+          <img style="width: 18px" src="@/assets/11zon_cropped.png" />
         </template>
         356678
       </a-menu-item>
@@ -106,4 +111,5 @@ export default defineComponent({
 
 <style scoped>
 @import "@/css/styles.css";
+
 </style>

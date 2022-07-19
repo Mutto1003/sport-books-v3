@@ -1,9 +1,12 @@
 <template>
-  <a-collapse v-model:activeKey="activeKey">
-    <a-collapse-panel style="background-color: #2dcc70" key="1" header="แนะนำ">
+  <a-card style="background-color: #2dcc70; text-align: center; border-radius: 8px" title="แนะนำ">
+    <a-card-grid
+      style="width: 100%; background-color: #003147"
+      :hoverable="false"
+    >
       <a-list
-        style="background-color: #2b2b3d"
         class="demo-loadmore-list"
+        style="width: 100%; text-align: start"
         :loading="initLoading"
         item-layout="horizontal"
         :data-source="list"
@@ -30,13 +33,13 @@
             <a-skeleton avatar :title="false" :loading="!!item.loading" active>
               <a-list-item-meta>
                 <template #title>
-                  <a style="color:#ffff;" href="https://www.antdv.com/">{{ item.name.last }}</a>
+                  <a style="color: #ffff" href="https://www.antdv.com/">{{
+                    item.name.last
+                  }}</a>
                 </template>
                 <template #avatar>
-                  <a-avatar
-                    style="margin-left: 1em"
-                    :src="item.picture.large"
-                  />
+                  <!-- <a style="color: #ffff; margin-right: 1em;">{{ "100" }}</a> -->
+                  <a-avatar :src="item.picture.large" />
                 </template>
               </a-list-item-meta>
               <!-- <div>content</div> -->
@@ -44,14 +47,14 @@
           </a-list-item>
         </template>
       </a-list>
-    </a-collapse-panel>
-  </a-collapse>
+    </a-card-grid>
+  </a-card>
 </template>
 
 <script>
 import { FieldTimeOutlined } from "@ant-design/icons-vue";
 import { defineComponent, ref, watch, onMounted, nextTick } from "vue";
-const count = 5;
+const count = 6;
 const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
 export default defineComponent({
   components: {
@@ -119,10 +122,16 @@ export default defineComponent({
 
 <style scoped>
 /* @import "@/css/styles.css"; */
-/* .demo-loadmore-list {
+.demo-loadmore-list {
   min-height: 350px;
-} */
-.ant-collapse-content > .ant-collapse-content-box {
-  padding: 0px;
+  text-decoration: none;
+  /* background-color: blue; */
+}
+.ant-list-split .ant-list-item:last-child {
+  border-bottom: none;
+}
+
+.ant-list-split .ant-list-item {
+  border-bottom: none;
 }
 </style>

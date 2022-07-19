@@ -1,6 +1,22 @@
 <template>
-  <a-collapse v-model:activeKey="activeKey">
-    <a-collapse-panel style="background-color: #2B2B3D;" key="1" header="ลีค">
+  <a-card
+    style="background-color: #2dcc70; border-radius: 8px; text-align: center"
+    title="ลีค"
+  >
+    <a-card-grid style="width: 100%" :hoverable="false">
+      <div class="components-input-demo-presuffix">
+        <a-input
+          style="border-radius: 30px"
+          v-model:value="userName"
+          placeholder="ค้นหา"
+        >
+          <template #suffix>
+            <a-tooltip title="Extra information">
+              <SearchOutlined style="color: rgba(0, 0, 0, 0.45)" />
+            </a-tooltip>
+          </template>
+        </a-input>
+      </div>
       <a-list
         class="demo-loadmore-list"
         :loading="initLoading"
@@ -40,12 +56,18 @@
           </a-list-item>
         </template>
       </a-list>
+    </a-card-grid>
+  </a-card>
+
+  <!-- <a-collapse v-model:activeKey="activeKey">
+    <a-collapse-panel style="background-color: #2b2b3d" key="1" header="ลีค">
+      
     </a-collapse-panel>
-  </a-collapse>
+  </a-collapse> -->
 </template>
 
 <script>
-import { FieldTimeOutlined } from "@ant-design/icons-vue";
+import { FieldTimeOutlined, SearchOutlined } from "@ant-design/icons-vue";
 import { defineComponent, ref, watch, onMounted, nextTick } from "vue";
 const count = 10;
 const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
@@ -54,6 +76,7 @@ const leagueUrl = `http://49.0.193.193:8021/api/v1/feed/live_score/list`;
 export default defineComponent({
   components: {
     FieldTimeOutlined,
+    SearchOutlined,
   },
   setup() {
     // const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`;
@@ -120,4 +143,12 @@ export default defineComponent({
 .demo-loadmore-list {
   min-height: 350px;
 }
+.ant-list-split .ant-list-item:last-child {
+  border-bottom: none;
+}
+
+.ant-list-split .ant-list-item {
+  border-bottom: none;
+}
+
 </style>

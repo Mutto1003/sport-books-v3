@@ -1,13 +1,9 @@
 <template>
-  <a-collapse style="margin-top: 2em;" v-model:activeKey="activeKey">
-    <a-collapse-panel
-      style="background-color: #2dcc70;"
-      key="1"
-      header="ทั้งหมด"
-    >
+  <a-card style="background-color: #2dcc70; margin-top: 2em; text-align: center; border-radius: 8px" title="ทั้งหมด"> 
+    <a-card-grid style="width: 100%;background-color: #003147;" :hoverable="false">
       <a-list
-        style="background-color: #2b2b3d;"
         class="demo-loadmore-list"
+        style="width: 100%; text-align: start"
         :loading="initLoading"
         item-layout="horizontal"
         :data-source="list"
@@ -34,15 +30,10 @@
             <a-skeleton avatar :title="false" :loading="!!item.loading" active>
               <a-list-item-meta>
                 <template #title>
-                  <a style="color: #ffff" href="https://www.antdv.com/">{{
-                    item.name.last
-                  }}</a>
+                  <a style="color: #ffff" href="https://www.antdv.com/">{{ item.name.last }}</a>
                 </template>
                 <template #avatar>
-                  <a-avatar
-                    style="margin-left: 1em"
-                    :src="item.picture.large"
-                  />
+                  <a-avatar :src="item.picture.large" />
                 </template>
               </a-list-item-meta>
               <!-- <div>content</div> -->
@@ -50,8 +41,8 @@
           </a-list-item>
         </template>
       </a-list>
-    </a-collapse-panel>
-  </a-collapse>
+    </a-card-grid>
+  </a-card>
 </template>
 
 <script>
@@ -129,8 +120,12 @@ export default defineComponent({
   min-height: 350px;
   /* background-color: blue; */
 }
-
-.ant-collapse-content > .ant-collapse-content-box {
-  padding: 0px;
+.ant-list-split .ant-list-item:last-child {
+  border-bottom: none;
 }
+
+.ant-list-split .ant-list-item {
+  border-bottom: none;
+}
+
 </style>

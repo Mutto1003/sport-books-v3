@@ -1,70 +1,23 @@
 <template>
   <div>
-    <a-layout-header
-      style="background: #003147; margin: 10px; border-radius: 8px; padding: 0"
-    >
+    <a-layout-header style="background: #003147">
       <a-row>
-        <a-col :span="12">
-          <RightCircleFilled
-            :style="{ fontSize: '20px', color: '#696CFF', margin: '10px' }"
-            v-if="collapsed"
-            class="trigger"
-            @click="toggleCollapse"
-          />
-          <LeftCircleFilled
-            :style="{ fontSize: '20px', color: '#696CFF', margin: '10px' }"
-            v-else
-            class="trigger"
-            @click="toggleCollapse"
-          />
-          <a-input-search
-            :style="{ margin: '10px' }"
-            v-model:value="value"
-            placeholder="input search text"
-            style="width: 200px"
-            @search="onSearch"
-          />
+        <a-col :span="18"> </a-col>
+        <a-col :span="5" align="end">
+          <div class="components-input-demo-presuffix" > 
+            <a-input style="border-radius: 30px;" v-model:value="userName" placeholder="ค้นหา">
+              <template #suffix>
+                <a-tooltip title="Extra information">
+                  <SearchOutlined style="color: rgba(0, 0, 0, 0.45)" />
+                </a-tooltip>
+              </template>
+            </a-input>
+          </div>
         </a-col>
-        <a-col :span="12" align="end">
-          <a-avatar
-            style="background-color: #003147"
-            :style="{ fontSize: '25px', margin: '10px' }"
-          >
-            <template #icon>
-              <DollarOutlined />
-            </template>
-          </a-avatar>
-
-          <a-avatar
-            style="background-color: #003147"
-            :style="{ fontSize: '25px', margin: '10px' }"
-          >
-            <template #icon>
-              <SolutionOutlined />
-            </template>
-          </a-avatar>
-
-          <a-avatar
-            style="background-color: #003147"
-            :style="{ fontSize: '25px', margin: '10px' }"
-          >
-            <template #icon>
-              <DollarOutlined />
-            </template>
-          </a-avatar>
-
-          <a-avatar
-            style="background-color: #003147"
-            :style="{ fontSize: '25px', margin: '10px' }"
-          >
-            <template #icon>
-              <DesktopOutlined />
-            </template>
-          </a-avatar>
-          
+        <a-col :span="1" align="end">
           <a-avatar
             style="background-color: #87d068"
-            :style="{ margin: '10px' }"
+            :style="{ margin: '0px' }"
           >
             <template #icon>
               <UserOutlined />
@@ -80,25 +33,13 @@
 
 <script>
 import {
-  LeftCircleFilled,
-  RightCircleFilled,
-  DribbbleOutlined,
-  UserOutlined,
-  DollarOutlined,
-  SolutionOutlined,
-  DesktopOutlined,
+  UserOutlined, SearchOutlined
 } from "@ant-design/icons-vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
   components: {
-    LeftCircleFilled,
-    RightCircleFilled,
-    DribbbleOutlined,
-    UserOutlined,
-    DollarOutlined,
-    SolutionOutlined,
-    DesktopOutlined
+    UserOutlined, SearchOutlined 
   },
   props: ["collapsed"],
   setup(props, { emit }) {

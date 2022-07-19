@@ -3,9 +3,9 @@
     <div>
       <img  style="width: 100%;  padding: 5px" alt="example" src="@/assets/banner.jpeg" />
     </div>
-    <div><img  style="width: 100%;  padding: 5px" alt="example" src="@/assets/banner2.jpg" /></div>
     <div><img  style="width: 100%;  padding: 5px" alt="example" src="@/assets/banner.jpeg" /></div>
-    <div><img  style="width: 100%;  padding: 5px" alt="example" src="@/assets/banner2.jpg" /></div>
+    <div><img  style="width: 100%;  padding: 5px" alt="example" src="@/assets/banner.jpeg" /></div>
+    <div><img  style="width: 100%;  padding: 5px" alt="example" src="@/assets/banner.jpeg" /></div>
   </a-carousel>
 </template>
 

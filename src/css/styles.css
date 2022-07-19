@@ -63,7 +63,6 @@ td.column-money {
 
 /* crad Live */
 
-
 /* Hesder Menu */
 
 /* card VariouRresults */
@@ -120,13 +119,20 @@ td.column-money {
 }
 
 .live-card {
-  background: #fceee2;
-  border-radius: 8px;
+  background: #003147;
+  border-radius: 16px;
   margin-top: 1em;
   color: #ffff;
 }
 
+.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+  padding: 0;
+}
 
 .ant-collapse-content > .ant-collapse-content-box {
-  padding: 0px;
+  padding: 0;
+}
+
+* {
+  margin: 0;
 }
