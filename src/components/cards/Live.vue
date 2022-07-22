@@ -1,6 +1,6 @@
 <template>
   <a-collapse v-model:activeKey="activeKey">
-    <a-collapse-panel key="1" header="ถ่ายทอดสดผ่านเว็บ">
+    <a-collapse-panel style="background-color: #5574A7;" key="1" header="ถ่ายทอดสดผ่านเว็บ">
       <!-- <p class="text-dark crad-live">{{ text }}</p> -->
       <a-empty class="crad-live"/>  
     </a-collapse-panel>

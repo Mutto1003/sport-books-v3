@@ -7,10 +7,11 @@
       minHeight: '280px',
     }"
   >
-  <router-view />
+    <router-view />
     <!-- <Home /> -->
     <!-- <SportBet /> -->
     <!-- <Brokerbet /> -->
+    <!-- <TagePage /> -->
   </a-layout-content>
 </template>
 
@@ -18,6 +19,7 @@
 import SportBet from "@/views/SportBet.vue";
 import Brokerbet from "@/views/Brokerbet.vue";
 import Home from "@/views/Home.vue";
+import TagePage from "@/components/cards/TagePage.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
@@ -25,6 +27,7 @@ export default defineComponent({
     SportBet,
     Brokerbet,
     Home,
+    TagePage,
   },
   setup() {},
 });

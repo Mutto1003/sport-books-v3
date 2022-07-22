@@ -23,6 +23,7 @@ import HeaderHome from "@/components/core/HeaderHome.vue";
 import Content from "@/components/core/Content.vue";
 import Footer from "@/components/core/Footer.vue";
 
+
 export default defineComponent({
   components: {
     Menu,
@@ -36,7 +37,7 @@ export default defineComponent({
   setup() {
     return {
       selectedKeys: ref(["1"]),
-      collapsed: ref(false),
+      collapsed: ref(true),
     };
   },
 });

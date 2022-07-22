@@ -1,14 +1,14 @@
 <template>
   <a-collapse v-model:activeKey="activeKey">
-    <a-collapse-panel key="1" header="รายการวันนี้">
+    <a-collapse-panel style="background-color: #5574A7;" key="1" header="รายการวันนี้">
       <!-- <p>{{ text }}</p> -->
-      <p class="bg-card">แมนยู vs ลิเวอร์พูล <FieldTimeOutlined />  02.30 PM</p>
-      <p class="bg-card">แมนยู vs ลิเวอร์พูล <FieldTimeOutlined />  02.30 PM</p>
-      <p class="bg-card">แมนยู vs ลิเวอร์พูล <FieldTimeOutlined />  02.30 PM</p>
-      <p class="bg-card">แมนยู vs ลิเวอร์พูล <FieldTimeOutlined />  02.30 PM</p>
-      <p class="bg-card">แมนยู vs ลิเวอร์พูล <FieldTimeOutlined />  02.30 PM</p>
-      <p class="bg-card">แมนยู vs ลิเวอร์พูล <FieldTimeOutlined />  02.30 PM</p>
-      <p class="bg-card">แมนยู vs ลิเวอร์พูล <FieldTimeOutlined />  02.30 PM</p>
+      <p class="bg-card">แมนยู vs ลิเวอร์พูล <FieldTimeOutlined /> 02.30 PM</p>
+      <p class="bg-card">แมนยู vs ลิเวอร์พูล <FieldTimeOutlined /> 02.30 PM</p>
+      <p class="bg-card">แมนยู vs ลิเวอร์พูล <FieldTimeOutlined /> 02.30 PM</p>
+      <p class="bg-card">แมนยู vs ลิเวอร์พูล <FieldTimeOutlined /> 02.30 PM</p>
+      <p class="bg-card">แมนยู vs ลิเวอร์พูล <FieldTimeOutlined /> 02.30 PM</p>
+      <p class="bg-card">แมนยู vs ลิเวอร์พูล <FieldTimeOutlined /> 02.30 PM</p>
+      <p class="bg-card">แมนยู vs ลิเวอร์พูล <FieldTimeOutlined /> 02.30 PM</p>
     </a-collapse-panel>
   </a-collapse>
 </template>
