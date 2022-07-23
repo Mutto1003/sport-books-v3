@@ -101,6 +101,7 @@ import { defineComponent, onMounted, ref, nextTick } from "vue";
 const count = 4;
 // const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
 const livescoreDataUrl = `http://49.0.193.193:8021/api/v1/feed/live_score/list`;
+const livescoreLeague = `http://49.0.193.193:8021/api/v1/feed/live_score/list?league_id=8363`;
 export default defineComponent({
   components: {
     CalendarOutlined,
@@ -124,6 +125,7 @@ export default defineComponent({
     //     });
     //   console.log(data_score);
     // });
+    
 
     onMounted(() => {
       axios.get(livescoreDataUrl).then((res) => {

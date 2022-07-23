@@ -24,7 +24,7 @@
       >
         <template #loadMore>
           <div
-            v-if="!isHidden"            
+            v-if="!isHidden"
             :style="{
               bottom: '0',
               textAlign: 'center',
@@ -33,7 +33,7 @@
               lineHeight: '32px',
             }"
           >
-            <a-button @click="onBack()"> Back </a-button>            
+            <a-button @click="onBack()"> Back </a-button>
           </div>
         </template>
         <template #renderItem="{ item }">
@@ -49,7 +49,7 @@
               :loading="!!item.loading"
               active
             >
-              <a-list-item-meta @click="leagueList">
+              <a-list-item-meta @click="leagueList(item.location_id)">
                 <template #title>
                   <a>{{ item.name }}</a>
                 </template>
@@ -86,7 +86,7 @@ import {
 } from "vue";
 const count = 10;
 // const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
-const leagueUrl = `http://49.0.193.193:8021/api/v1/feed/live_score/league/list`;
+// const leagueUrl = `http://49.0.193.193:8021/api/v1/feed/live_score/league/list?location_id=${location_id}`;
 const countryUrl = `http://49.0.193.193:8021/api/v1/feed/live_score/location/list`;
 export default defineComponent({
   components: {
@@ -120,12 +120,17 @@ export default defineComponent({
       countryList();
     };
 
-    const leagueList = () => {
-      axios.get(leagueUrl).then((res) => {
-        initLoading.value = false;
-        data.value = res.data.data.leagues;
-        list.value = res.data.data.leagues;
-      });
+    const leagueList = (value) => {      
+      const location_id = value;
+      axios
+        .get(
+          `http://49.0.193.193:8021/api/v1/feed/live_score/league/list?location_id=${location_id}`
+        )
+        .then((res) => {
+          initLoading.value = false;
+          data.value = res.data.data.leagues;
+          list.value = res.data.data.leagues;
+        });
       isHidden.value = false;
     };
 
