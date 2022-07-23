@@ -1,92 +1,54 @@
 <template>
   <a-row :gutter="[16, 16]">
-    <a-col :span="4">
-      <img
+    <a-col :span="3"
+      ><img
         style="width: 100%; padding: 5px"
         alt="example"
-        src="@/assets/188BET.png"
+        src="@/assets/betway.png"
         @click="$router.push('/sportBet')"
-      />
-    </a-col>
-    <a-col :span="4">
-      <img
+    /></a-col>
+    <a-col :span="3"
+      ><img
         style="width: 100%; padding: 5px"
         alt="example"
-        src="@/assets/188BET.png"
-      />
-    </a-col>
-    <a-col :span="4">
-      <img
+        src="@/assets/bet365.png"
+    /></a-col>
+    <a-col :span="3"
+      ><img
         style="width: 100%; padding: 5px"
         alt="example"
-        src="@/assets/188BET.png"
-      />
-    </a-col>
-    <a-col :span="4">
-      <img
+        src="@/assets/bwin.png"
+    /></a-col>
+    <a-col :span="3"
+      ><img
         style="width: 100%; padding: 5px"
         alt="example"
-        src="@/assets/188BET.png"
-      />
-    </a-col>
-    <a-col :span="4">
-      <img
+        src="@/assets/sbobet.png"
+    /></a-col>
+    <a-col :span="3"
+      ><img
         style="width: 100%; padding: 5px"
         alt="example"
-        src="@/assets/188BET.png"
-      />
-    </a-col>
-    <a-col :span="4">
-      <img
+        src="@/assets/betway.png"
+    /></a-col>
+    <a-col :span="3"
+      ><img
         style="width: 100%; padding: 5px"
         alt="example"
-        src="@/assets/188BET.png"
-      />
-    </a-col>
-  </a-row>
-  <a-row :gutter="[16, 16]">
-    <a-col :span="4">
-      <img
+        src="@/assets/marathonbet_.png"
+    /></a-col>
+    <a-col :span="3"
+      ><img
         style="width: 100%; padding: 5px"
         alt="example"
-        src="@/assets/188BET.png"
-      />
-    </a-col>
-    <a-col :span="4">
-      <img
+        src="@/assets/bet365.png"
+    /></a-col>
+    <a-col :span="3"
+      ><img
         style="width: 100%; padding: 5px"
         alt="example"
-        src="@/assets/188BET.png"
-      />
-    </a-col>
-    <a-col :span="4">
-      <img
-        style="width: 100%; padding: 5px"
-        alt="example"
-        src="@/assets/188BET.png"
-      />
-    </a-col>
-    <a-col :span="4">
-      <img
-        style="width: 100%; padding: 5px"
-        alt="example"
-        src="@/assets/188BET.png"
-      />
-    </a-col>
-    <a-col :span="4">
-      <img
-        style="width: 100%; padding: 5px"
-        alt="example"
-        src="@/assets/188BET.png"
-      />
-    </a-col>
-    <a-col :span="4">
-      <img
-        style="width: 100%; padding: 5px"
-        alt="example"
-        src="@/assets/188BET.png"
-      />
-    </a-col>
+        src="@/assets/bwin.png"
+    /></a-col>
   </a-row>
 </template>
 

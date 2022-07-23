@@ -1,40 +1,41 @@
 <template>
   <a-card
-    style="background-color: #2dcc70; border-radius: 8px; text-align: center"    
+    style="background-color: #2dcc70; border-radius: 8px; text-align: center"
     title="ลีค"
   >
     <a-card-grid style="width: 100%" :hoverable="false">
       <div class="components-input-demo-presuffix">
         <a-input
           style="border-radius: 30px; margin-bottom: 1em"
-          v-model="searchQuery"         
+          v-model="searchQuery"
           placeholder="ค้นหา"
         >
           <template #suffix>
             <SearchOutlined style="color: rgba(0, 0, 0, 0.45)" />
           </template>
-        </a-input>        
+        </a-input>
       </div>
       <a-list
         class="demo-loadmore-list"
         style="width: 100%; text-align: start"
         :loading="initLoading"
-        item-layout="horizontal" 
-        :data-source="list" 
+        item-layout="horizontal"
+        :data-source="list"
       >
-        <!-- <template #loadMore>
+        <template #loadMore>
           <div
-            v-if="!initLoading && !loading"
+            v-if="!isHidden"            
             :style="{
+              bottom: '0',
               textAlign: 'center',
               marginTop: '12px',
               height: '32px',
               lineHeight: '32px',
             }"
           >
-            <a-button @click="onLoadMore">loading more</a-button>
+            <a-button @click="onBack()"> Back </a-button>            
           </div>
-        </template> -->
+        </template>
         <template #renderItem="{ item }">
           <a-list-item>
             <!-- <template #actions>
@@ -74,7 +75,15 @@
 <script>
 import { FieldTimeOutlined, SearchOutlined } from "@ant-design/icons-vue";
 import axios from "axios";
-import { defineComponent, ref, watch, onMounted, reactive, computed, nextTick } from "vue";
+import {
+  defineComponent,
+  ref,
+  watch,
+  onMounted,
+  reactive,
+  computed,
+  nextTick,
+} from "vue";
 const count = 10;
 // const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
 const leagueUrl = `http://49.0.193.193:8021/api/v1/feed/live_score/league/list`;
@@ -90,21 +99,26 @@ export default defineComponent({
     const initLoading = ref(true);
     const loading = ref(false);
     const data = reactive([]);
-    const list = ref([]);   
+    const list = ref([]);
     const searchQuery = ref("");
+    const isHidden = ref(true);
 
     const handleChange = (keys, direction, moveKeys) => {
-      console.log(keys, direction, moveKeys);      
+      console.log(keys, direction, moveKeys);
       // console.log(data)
     };
 
     const handleSearch = (value) => {
-      console.log("1111");
+      console.log("2222");
     };
 
     // const filterOption = (inputValue, option) => {
     //   return option.name.indexOf(inputValue) > -1;
-    // };   
+    // };
+
+    const onBack = () => {
+      countryList();
+    };
 
     const leagueList = () => {
       axios.get(leagueUrl).then((res) => {
@@ -112,6 +126,16 @@ export default defineComponent({
         data.value = res.data.data.leagues;
         list.value = res.data.data.leagues;
       });
+      isHidden.value = false;
+    };
+
+    const countryList = () => {
+      axios.get(countryUrl).then((res) => {
+        initLoading.value = false;
+        data.value = res.data.data.locations;
+        list.value = res.data.data.locations;
+      });
+      isHidden.value = true;
     };
 
     onMounted(() => {
@@ -133,9 +157,8 @@ export default defineComponent({
     const searchedData = computed(() => {
       return products.filter((product) => {
         return (
-          product.city
-            .toLowerCase()
-            .indexOf(searchQuery.value.toLowerCase()) != -1
+          product.city.toLowerCase().indexOf(searchQuery.value.toLowerCase()) !=
+          -1
         );
       });
     });
@@ -188,9 +211,11 @@ export default defineComponent({
       handleChange,
       handleSearch,
       // filterOption,
-      leagueList, 
-      searchQuery, 
-      searchedData   
+      leagueList,
+      searchQuery,
+      searchedData,
+      onBack,
+      isHidden,
       // onLoadMore,
     };
   },

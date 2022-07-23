@@ -1,6 +1,6 @@
 <template>
-  <CarouselBanner />
-  <BrokerBet />
+  <CarouselBanner /><br><br>
+  <BrokerBet style="margin-top: 1em;"/>
 </template>
 
 <script>
