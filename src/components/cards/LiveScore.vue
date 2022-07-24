@@ -1,21 +1,33 @@
 <template>
+  <!-- <div>{{ $store.getters.getleagueId }}</div> -->
   <div class="menu-card" id="components-grid-demo-flex">
-    <a-row style="display: flex; align-items: center;" justify="space-around">
+    <a-row style="display: flex; align-items: center" justify="space-around">
       <a-col :span="3"
-        ><a-button  type="primary" size="small" danger>LIVE</a-button></a-col
-      >      
-      <a-col :span="3"><a-button type="text" style="color: #ffff;">WEB</a-button></a-col>
-      <a-col :span="3"><a-button type="text" style="color: #ffff;">THU</a-button></a-col>
-      <a-col :span="3"><a-button type="text" style="color: #ffff;">TODAY</a-button></a-col>
-      <a-col :span="3"><a-button type="text" style="color: #ffff;">SAT</a-button></a-col>
-      <a-col :span="3"><a-button type="text" style="color: #ffff;">SUN</a-button></a-col>
-      <a-col
-        :span="3"
-        style="margin-right: 2em;"
+        ><a-button type="primary" size="small" danger>LIVE</a-button></a-col
       >
+      <a-col :span="3"
+        ><a-button type="text" style="color: #ffff">WEB</a-button></a-col
+      >
+      <a-col :span="3"
+        ><a-button type="text" style="color: #ffff">THU</a-button></a-col
+      >
+      <a-col :span="3"
+        ><a-button type="text" style="color: #ffff">TODAY</a-button></a-col
+      >
+      <a-col :span="3"
+        ><a-button type="text" style="color: #ffff">SAT</a-button></a-col
+      >
+      <a-col :span="3"
+        ><a-button type="text" style="color: #ffff">SUN</a-button></a-col
+      >
+      <a-col :span="3" style="margin-right: 2em">
         <a-date-picker size="small" v-model:value="value1" />
       </a-col>
     </a-row>
+  </div>
+
+  <div style="margin-top: 2em; display: flex; align-items: center">      
+    <h1>{{ leagueName }}</h1>    
   </div>
 
   <a-list
@@ -97,11 +109,12 @@ import {
   FieldTimeOutlined,
 } from "@ant-design/icons-vue";
 import axios from "axios";
-import { defineComponent, onMounted, ref, nextTick } from "vue";
-const count = 4;
+import { useStore } from "vuex";
+import { defineComponent, onMounted, ref, computed, onUpdated } from "vue";
+import store from "@/store";
 // const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
 const livescoreDataUrl = `http://49.0.193.193:8021/api/v1/feed/live_score/list`;
-const livescoreLeague = `http://49.0.193.193:8021/api/v1/feed/live_score/list?league_id=8363`;
+// const livescoreLeague = `http://49.0.193.193:8021/api/v1/feed/live_score/list?league_id=${leagueId}`;
 export default defineComponent({
   components: {
     CalendarOutlined,
@@ -109,45 +122,66 @@ export default defineComponent({
     FieldTimeOutlined,
   },
   setup() {
+    const store = useStore();
     const initLoading = ref(true);
     const loading = ref(false);
     const data = ref([]);
     const list = ref([]);
-    const team = ref([]);
+    // let leagueIdT = store.state.leagueId;
 
-    // onMounted(() => {
-    //   fetch(livescoreDataUrl)
-    //     .then((res) => res.json())
-    //     .then((res) => {
-    //       initLoading.value = false;
-    //       data.value = res.data.live_scores;
-    //       list.value = res.data.live_scores;
-    //     });
-    //   console.log(data_score);
-    // });
-    
+    const leagueId = computed(() => store.state.leagueId);
+    const leagueName = computed(() => store.state.leagueName);
 
     onMounted(() => {
       axios.get(livescoreDataUrl).then((res) => {
         initLoading.value = false;
         data.value = res.data.data.live_scores;
         list.value = res.data.data.live_scores;
-        // let itemTeam = [];
-        // for (let i = 0; i < data.value.length; i++) {
-        //   console.log(data.value[i].fixture.Participants);
-        //   itemTeam.push(data.value[i].fixture.Participants);
-        //   // console.log(JSON.stringify(this.Team));
-
-        // }
       });
-      console.log(data);
     });
+
+    onUpdated(() => {
+      // console.log(leagueIdT);
+      let leagueNameT = store.state.leagueName;
+      console.log(leagueNameT);
+      if (store.state.leagueId != 0 && store.state.leagueId != null) {
+        onFiterleague();
+      } else if (store.state.leagueId == null) {
+        onFiterleagueAll();
+      }
+    });
+
+    const onFiterleague = () => {
+      axios
+        .get(
+          `http://49.0.193.193:8021/api/v1/feed/live_score/list?league_id=${store.state.leagueId}`
+        )
+        .then((res) => {
+          initLoading.value = false;
+          data.value = res.data.data.live_scores;
+          list.value = res.data.data.live_scores;
+        });
+      store.dispatch("actionleagueId", 0);
+    };
+
+    const onFiterleagueAll = () => {
+      axios.get(livescoreDataUrl).then((res) => {
+        initLoading.value = false;
+        data.value = res.data.data.live_scores;
+        list.value = res.data.data.live_scores;
+      });
+      store.dispatch("actionleagueId", 0);
+    };
 
     return {
       loading,
       initLoading,
       data,
       list,
+      leagueId,
+      leagueName,
+      onFiterleague,
+      onFiterleagueAll,
       // onLoadMore,
     };
   },

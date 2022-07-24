@@ -1,7 +1,7 @@
 <template>
   <a-row>
     <a-col :span="4"><League style="margin-right: 1em;"/></a-col>
-    <a-col :span="16"><CarouselBanner /> <LiveScore style="margin-top: 2em;"/> </a-col>
+    <a-col :span="16"><CarouselBanner /> <LiveScore title="ทดสอบ" style="margin-top: 2em;"/> </a-col>
     <a-col :span="4"><RecommendBroker style="margin-left: 1em;"/> <AllBrokerBet style="margin-left: 1em;"/></a-col>
   </a-row>
 </template>

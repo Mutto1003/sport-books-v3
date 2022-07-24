@@ -1,4 +1,4 @@
-<template>
+<template>  
   <a-card
     style="background-color: #2dcc70; border-radius: 8px; text-align: center"
     title="ลีค"
@@ -49,7 +49,9 @@
               :loading="!!item.loading"
               active
             >
-              <a-list-item-meta @click="leagueList(item.location_id)">
+              <a-list-item-meta
+                @click="leagueList(item.location_id, item.league_id, item.name)"
+              >
                 <template #title>
                   <a>{{ item.name }}</a>
                 </template>
@@ -73,6 +75,7 @@
 </template>
 
 <script>
+import {useStore} from "vuex"
 import { FieldTimeOutlined, SearchOutlined } from "@ant-design/icons-vue";
 import axios from "axios";
 import {
@@ -84,6 +87,7 @@ import {
   computed,
   nextTick,
 } from "vue";
+import store from "@/store";
 const count = 10;
 // const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
 // const leagueUrl = `http://49.0.193.193:8021/api/v1/feed/live_score/league/list?location_id=${location_id}`;
@@ -93,8 +97,10 @@ export default defineComponent({
     FieldTimeOutlined,
     SearchOutlined,
   },
-  setup() {
+  emits: ["submitLogin"],
+  setup({ emit }) {
     // const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`;
+    const store = useStore();
     const activeKey = ref(["1"]);
     const initLoading = ref(true);
     const loading = ref(false);
@@ -120,18 +126,25 @@ export default defineComponent({
       countryList();
     };
 
-    const leagueList = (value) => {      
-      const location_id = value;
-      axios
-        .get(
-          `http://49.0.193.193:8021/api/v1/feed/live_score/league/list?location_id=${location_id}`
-        )
-        .then((res) => {
-          initLoading.value = false;
-          data.value = res.data.data.leagues;
-          list.value = res.data.data.leagues;
-        });
-      isHidden.value = false;
+    const leagueList = (valueLocation, valueLeague, valueLeagueName) => {  
+      // console.log(valueLocation,valueLeague);    
+      if (valueLocation != null && valueLeague == null) {
+        const location_id = valueLocation;
+        axios
+          .get(
+            `http://49.0.193.193:8021/api/v1/feed/live_score/league/list?location_id=${location_id}`
+          )
+          .then((res) => {
+            initLoading.value = false;
+            data.value = res.data.data.leagues;
+            list.value = res.data.data.leagues;
+          });
+        isHidden.value = false;
+      }else if(valueLocation != null && valueLeague != null){
+        // console.log("");
+        store.dispatch("actionleagueId", valueLeague)
+        store.dispatch("actionleagueName", valueLeagueName)
+      }
     };
 
     const countryList = () => {
@@ -141,6 +154,8 @@ export default defineComponent({
         list.value = res.data.data.locations;
       });
       isHidden.value = true;
+      store.dispatch("actionleagueId", null)
+      store.dispatch("actionleagueName", "All League")
     };
 
     onMounted(() => {
