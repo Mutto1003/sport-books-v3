@@ -5,7 +5,7 @@
         style="width: 100%; padding: 5px"
         alt="example"
         src="@/assets/betway.png"
-        @click="$router.push('/sportBet')"
+        @click="naxtPage"
     /></a-col>
     <a-col :span="3"
       ><img
@@ -54,9 +54,19 @@
 
 <script>
 import { defineComponent } from "vue";
+import { useRouter, useRoute } from "vue-router";
+import store from "@/store";
 
 export default defineComponent({
-  setup() {},
+  setup() {    
+    const router = useRouter();
+    const naxtPage = () => {
+      router.push({ name: "SportBet" });
+      store.dispatch("actionisHiddenMenuHome", true);
+      store.dispatch("actionisHiddenBroker", false);
+    };
+    return { naxtPage };
+  },
 });
 </script>
 

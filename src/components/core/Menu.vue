@@ -44,31 +44,31 @@
           <AppstoreOutlined />
         </template>
         <template #title>ฟุตบอลโลก</template>
-        <a-menu-item key="3">ล่วงหน้า วันนี้ สด</a-menu-item>
-        <a-menu-item key="4">ฟุตบอล</a-menu-item>
-        <a-menu-item key="5">ทั้งหมด</a-menu-item>
-        <a-menu-item key="6">คะแนนที่ถูกต้อง</a-menu-item>
-        <a-menu-item key="7">คู่/คี่</a-menu-item>
-        <a-menu-item key="8">จำนวนรวมของประตู</a-menu-item>
-        <a-menu-item key="9">ครึ่งแรก/เต็มเวลา</a-menu-item>
-        <a-menu-item key="10">ประตูแรก/ประตูสุดท้าย</a-menu-item>
+        <!-- <a-menu-item key="3">ล่วงหน้า วันนี้ สด</a-menu-item> -->
+        <a-menu-item key="3">ฟุตบอล</a-menu-item>
+        <a-menu-item key="4">ทั้งหมด</a-menu-item>
+        <a-menu-item key="5">คะแนนที่ถูกต้อง</a-menu-item>
+        <a-menu-item key="6">คู่/คี่</a-menu-item>
+        <a-menu-item key="7">จำนวนรวมของประตู</a-menu-item>
+        <a-menu-item key="8">ครึ่งแรก/เต็มเวลา</a-menu-item>
+        <a-menu-item key="9">ประตูแรก/ประตูสุดท้าย</a-menu-item>
       </a-sub-menu>
       <a-sub-menu key="sub2">
         <template #icon>
           <SettingOutlined />
         </template>
         <template #title>กีฬา</template>
-        <a-menu-item key="11">Option 7</a-menu-item>
-        <a-menu-item key="12">Option 8</a-menu-item>
-        <a-menu-item key="13">Option 9</a-menu-item>
-        <a-menu-item key="14">Option 10</a-menu-item>
+        <a-menu-item key="10">Option 7</a-menu-item>
+        <a-menu-item key="11">Option 8</a-menu-item>
+        <a-menu-item key="12">Option 9</a-menu-item>
+        <a-menu-item key="13">Option 10</a-menu-item>
       </a-sub-menu>
       <a-sub-menu key="sub3">
         <template #icon>
           <SettingOutlined />
         </template>
         <template #title>อีสปอร์ต</template>
-        <a-menu-item key="15">Option 7</a-menu-item>
+        <a-menu-item key="14">Option 7</a-menu-item>
         <a-menu-item key="15">Option 8</a-menu-item>
         <a-menu-item key="16">Option 9</a-menu-item>
         <a-menu-item key="17">Option 10</a-menu-item>

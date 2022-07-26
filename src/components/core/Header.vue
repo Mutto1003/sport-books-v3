@@ -21,7 +21,7 @@
             :style="{ margin: '10px' }"
             v-model:value="value"
             placeholder="input search text"
-            style="width: 200px"
+            style="width: 300px; border-radius: 30px"
             @search="onSearch"
           />
         </a-col>

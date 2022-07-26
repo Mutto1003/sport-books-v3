@@ -20,12 +20,24 @@
         </a-col>
         <a-col :span="1" align="end">
           <a-avatar
+            v-if="!isHiddenLoginPass"
             @click="modal2Visible = true"
             style="background-color: #87d068"
             :style="{ margin: '0px' }"
           >
             <template #icon>
               <UserOutlined @click="modal2Visible = true" />
+            </template>
+          </a-avatar>
+
+          <a-avatar
+            v-if="!isHiddenLogin"
+            @click="modal2Visible = true"
+            style="background-color: #87d068"
+            :style="{ margin: '0px' }"
+          >
+            <template #icon>
+              <LockOutlined @click="modal2Visible = true" />
             </template>
           </a-avatar>
         </a-col>
@@ -55,7 +67,7 @@
           :rules="[{ required: true, message: 'Please input your username!' }]"
         >
           <a-input
-            style="border-radius: 15px; "
+            style="border-radius: 15px"
             v-model:value="formState.username"
           >
             <template #prefix>
@@ -70,7 +82,7 @@
           :rules="[{ required: true, message: 'Please input your password!' }]"
         >
           <a-input-password
-            style="border-radius: 15px;"
+            style="border-radius: 15px"
             v-model:value="formState.password"
           >
             <template #prefix>
@@ -81,6 +93,7 @@
 
         <a-form-item>
           <a-button
+            @click="Login"
             style="border-radius: 15px"
             :disabled="disabled"
             type="primary"
@@ -100,6 +113,7 @@ import {
   UserOutlined,
   SearchOutlined,
   LockOutlined,
+  UnlockOutlined,
 } from "@ant-design/icons-vue";
 import { defineComponent, ref, reactive, computed } from "vue";
 
@@ -108,9 +122,12 @@ export default defineComponent({
     UserOutlined,
     SearchOutlined,
     LockOutlined,
+    UnlockOutlined,
   },
-  props: ["collapsed"],
+  props: ["collapsed",],
   setup(props, { emit }) {
+    const isHiddenLoginPass = ref(true);
+    const isHiddenLogin = ref(false);
     const toggleCollapse = () => {
       emit("update:collapsed", !props.collapsed);
     };
@@ -139,6 +156,11 @@ export default defineComponent({
       return !(formState.username && formState.password);
     });
 
+    const Login = () => {
+      isHiddenLoginPass.value = false;
+      isHiddenLogin.value = true;
+    };
+
     return {
       toggleCollapse,
       modal2Visible,
@@ -147,6 +169,9 @@ export default defineComponent({
       onFinish,
       onFinishFailed,
       disabled,
+      isHiddenLoginPass,
+      isHiddenLogin,
+      Login,
     };
   },
 });

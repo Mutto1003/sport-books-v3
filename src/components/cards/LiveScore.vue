@@ -26,8 +26,8 @@
     </a-row>
   </div>
 
-  <div style="margin-top: 2em; display: flex; align-items: center">      
-    <h1>{{ leagueName }}</h1>    
+  <div style="margin-top: 2em; display: flex; align-items: center">
+    <h1>{{ leagueName }}</h1>
   </div>
 
   <a-list
@@ -81,15 +81,16 @@
               <!-- <p>{{ item.sport_id }}</p> -->
             </template>
           </a-list-item-meta>
-          <div style="width: 100px">
+          <div style="width: 60px">
             <a style="color: #ffff; margin: 1em"
               >{{ item.live_score.Scoreboard.Results[0].Position }} -
               {{ item.live_score.Scoreboard.Results[1].Position }}</a
             >
+            <!-- item.live_score.Scoreboard.Results[1].Value -->
           </div>
           <div>
             <a style="color: #ffff; margin: 1em"
-              ><FieldTimeOutlined /> 5:30 PM</a
+              ><FieldTimeOutlined /> {{ setTime(item.fixture.StartDate) }}</a
             >
           </div>
           <div style="width: 150px">
@@ -111,6 +112,7 @@ import {
 import axios from "axios";
 import { useStore } from "vuex";
 import { defineComponent, onMounted, ref, computed, onUpdated } from "vue";
+import moment from 'moment';
 import store from "@/store";
 // const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
 const livescoreDataUrl = `http://49.0.193.193:8021/api/v1/feed/live_score/list`;
@@ -127,6 +129,7 @@ export default defineComponent({
     const loading = ref(false);
     const data = ref([]);
     const list = ref([]);
+    const dateTime = ref([]);
     // let leagueIdT = store.state.leagueId;
 
     const leagueId = computed(() => store.state.leagueId);
@@ -173,6 +176,13 @@ export default defineComponent({
       store.dispatch("actionleagueId", 0);
     };
 
+    const setTime = (date) => {
+      let today = date
+      // console.log(today.toLocaleString("th-TH", { timeZone: "UTC" }));
+      console.log(today);
+      return moment(today).zone("+14:00").format("HH:mm a");;
+    };
+
     return {
       loading,
       initLoading,
@@ -182,6 +192,7 @@ export default defineComponent({
       leagueName,
       onFiterleague,
       onFiterleagueAll,
+      setTime,
       // onLoadMore,
     };
   },
