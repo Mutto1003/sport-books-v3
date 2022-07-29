@@ -61,15 +61,26 @@
               <DesktopOutlined />
             </template>
           </a-avatar>
-          
-          <a-avatar
-            style="background-color: #87d068"
-            :style="{ margin: '10px' }"
-          >
-            <template #icon>
-              <UserOutlined />
+
+          <a-dropdown>
+            <a-avatar
+              style="background-color: #87d068"
+              :style="{ margin: '10px' }"
+              class="ant-dropdown-link"
+              @click.prevent
+            >
+              <template #icon>
+                <UserOutlined />
+              </template>
+            </a-avatar>
+            <template #overlay>
+              <a-menu style="width: 150px;" @click="onClick">
+                <a-menu-item key="1">Logout</a-menu-item>
+                <!-- <a-menu-item key="2">2nd menu item</a-menu-item>
+                <a-menu-item key="3">3rd menu item</a-menu-item> -->
+              </a-menu>
             </template>
-          </a-avatar>
+          </a-dropdown>          
         </a-col>
       </a-row>
 
@@ -89,6 +100,8 @@ import {
   DesktopOutlined,
 } from "@ant-design/icons-vue";
 import { defineComponent } from "vue";
+import { useRouter } from "vue-router";
+import store from "@/store";
 
 export default defineComponent({
   components: {
@@ -98,14 +111,22 @@ export default defineComponent({
     UserOutlined,
     DollarOutlined,
     SolutionOutlined,
-    DesktopOutlined
+    DesktopOutlined,
   },
   props: ["collapsed"],
   setup(props, { emit }) {
+    const router = useRouter();
     const toggleCollapse = () => {
       emit("update:collapsed", !props.collapsed);
     };
-    return { toggleCollapse };
+
+    const onClick = ({ key }) => {
+      // console.log(`Click on item ${key}`);
+      router.push({ name: "home" });
+      store.dispatch("actionisHiddenMenuHome", false);
+      store.dispatch("actionisHiddenBroker", true);
+    };
+    return { toggleCollapse, onClick };
   },
 });
 </script>

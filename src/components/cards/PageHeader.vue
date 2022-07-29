@@ -12,10 +12,10 @@ const routes = [
     path: "first",
     breadcrumbName: "Second-level Menu",
   },
-  {
-    path: "second",
-    breadcrumbName: "Third-level Menu",
-  },
+  // {
+  //   path: "second",
+  //   breadcrumbName: "Third-level Menu",
+  // },
 ];
 export default defineComponent({
   setup() {

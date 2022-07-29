@@ -1,5 +1,8 @@
 <template>
-  <a-card style="background-color: #2dcc70; text-align: center; border-radius: 8px" title="แนะนำ">
+  <a-card
+    style="background-color: #2dcc70; text-align: center; border-radius: 8px"
+    title="แนะนำ"
+  >
     <a-card-grid
       style="width: 100%; background-color: #003147"
       :hoverable="false"
@@ -34,12 +37,12 @@
               <a-list-item-meta>
                 <template #title>
                   <a style="color: #ffff" href="https://www.antdv.com/">{{
-                    item.name.last
+                    item.name
                   }}</a>
                 </template>
                 <template #avatar>
                   <!-- <a style="color: #ffff; margin-right: 1em;">{{ "100" }}</a> -->
-                  <a-avatar :src="item.picture.large" />
+                  <a-avatar :src="item.image" />
                 </template>
               </a-list-item-meta>
               <!-- <div>content</div> -->
@@ -54,8 +57,9 @@
 <script>
 import { FieldTimeOutlined } from "@ant-design/icons-vue";
 import { defineComponent, ref, watch, onMounted, nextTick } from "vue";
-const count = 6;
-const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
+import axios from "axios";
+// const count = 6;
+const providers = `http://49.0.193.193:8021/api/v1/feed/live_score/provider/list`;
 export default defineComponent({
   components: {
     FieldTimeOutlined,
@@ -69,42 +73,17 @@ export default defineComponent({
     const list = ref([]);
 
     onMounted(() => {
-      fetch(fakeDataUrl)
-        .then((res) => res.json())
-        .then((res) => {
-          initLoading.value = false;
-          data.value = res.results;
-          list.value = res.results;
-        });
+      axios.get(providers).then((res) => {
+        initLoading.value = false;
+        data.value = res.data.data.providers;
+        list.value = res.data.data.providers;
+      });
+
+      // console.log(data)
     });
 
-    const onLoadMore = () => {
-      loading.value = true;
-      list.value = data.value.concat(
-        [...new Array(count)].map(() => ({
-          loading: true,
-          name: {},
-          picture: {},
-        }))
-      );
-      fetch(fakeDataUrl)
-        .then((res) => res.json())
-        .then((res) => {
-          const newData = data.value.concat(res.results);
-          loading.value = false;
-          data.value = newData;
-          list.value = newData;
-          nextTick(() => {
-            // Resetting window's offsetTop so as to display react-virtualized demo underfloor.
-            // In real scene, you can using public method of react-virtualized:
-            // https://stackoverflow.com/questions/46700726/how-to-use-public-method-updateposition-of-react-virtualized
-            window.dispatchEvent(new Event("resize"));
-          });
-        });
-    };
-
     watch(activeKey, (val) => {
-      console.log(val);
+      // console.log(val);
     });
 
     return {
@@ -114,7 +93,6 @@ export default defineComponent({
       initLoading,
       data,
       list,
-      onLoadMore,
     };
   },
 });
@@ -123,7 +101,7 @@ export default defineComponent({
 <style scoped>
 /* @import "@/css/styles.css"; */
 .demo-loadmore-list {
-  min-height: 350px;
+  min-height: 300px;
   text-decoration: none;
   /* background-color: blue; */
 }

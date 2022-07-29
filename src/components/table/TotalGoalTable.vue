@@ -1,0 +1,17 @@
+<template>
+    
+</template>
+
+<script>
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+    setup() {
+        
+    },
+})
+</script>
+
+<style scoped>
+@import "@/css/styles.css";
+</style>

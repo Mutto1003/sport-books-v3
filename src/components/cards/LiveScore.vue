@@ -51,7 +51,7 @@
     </template> -->
     <template #renderItem="{ item }">
       <a-list-item class="live-card">
-        <template #actions>
+        <template style="width: 100px" #actions>
           <a-button
             style="margin-right: 1em"
             @click="$router.push('/brokerbet')"
@@ -94,7 +94,7 @@
             >
           </div>
           <div style="width: 150px">
-            <a style="color: #ffff; width: 150px; margin: 1em"
+            <a style="color: #ffff; margin: 1em"
               ><EnvironmentOutlined /> {{ item.fixture.Location.Name }}</a
             >
           </div>
@@ -146,7 +146,7 @@ export default defineComponent({
     onUpdated(() => {
       // console.log(leagueIdT);
       let leagueNameT = store.state.leagueName;
-      console.log(leagueNameT);
+      // console.log(leagueNameT);
       if (store.state.leagueId != 0 && store.state.leagueId != null) {
         onFiterleague();
       } else if (store.state.leagueId == null) {
@@ -179,7 +179,7 @@ export default defineComponent({
     const setTime = (date) => {
       let today = date
       // console.log(today.toLocaleString("th-TH", { timeZone: "UTC" }));
-      console.log(today);
+      // console.log(today);
       return moment(today).zone("+14:00").format("HH:mm a");;
     };
 

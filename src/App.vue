@@ -48,7 +48,7 @@ export default defineComponent({
         
     return {
       selectedKeys: ref(["1"]),
-      collapsed: ref(true),      
+      collapsed: ref(true),
       isHiddenMenuHome,
       isHiddenBroker,
     };
