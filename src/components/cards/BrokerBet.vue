@@ -1,71 +1,55 @@
 <template>
-  <a-row :gutter="[16, 16]">
-    <a-col :span="3"
-      ><img
-        style="width: 100%; padding: 5px"
-        alt="example"
-        src="@/assets/betway.png"
-        @click="naxtPage"
-    /></a-col>
-    <a-col :span="3"
-      ><img
-        style="width: 100%; padding: 5px"
-        alt="example"
-        src="@/assets/bet365.png"
-    /></a-col>
-    <a-col :span="3"
-      ><img
-        style="width: 100%; padding: 5px"
-        alt="example"
-        src="@/assets/bwin.png"
-    /></a-col>
-    <a-col :span="3"
-      ><img
-        style="width: 100%; padding: 5px"
-        alt="example"
-        src="@/assets/sbobet.png"
-    /></a-col>
-    <a-col :span="3"
-      ><img
-        style="width: 100%; padding: 5px"
-        alt="example"
-        src="@/assets/betway.png"
-    /></a-col>
-    <a-col :span="3"
-      ><img
-        style="width: 100%; padding: 5px"
-        alt="example"
-        src="@/assets/marathonbet_.png"
-    /></a-col>
-    <a-col :span="3"
-      ><img
-        style="width: 100%; padding: 5px"
-        alt="example"
-        src="@/assets/bet365.png"
-    /></a-col>
-    <a-col :span="3"
-      ><img
-        style="width: 100%; padding: 5px"
-        alt="example"
-        src="@/assets/bwin.png"
-    /></a-col>
-  </a-row>
+  <a-list :grid="{ gutter: 16, column: 5 }" :data-source="data">
+    <template #renderItem="{ item }">
+      <a-list-item>
+        <a-card hoverable style="width: 240px;" @click="onClickSportBet">
+          <template #cover>
+            <img
+              alt="example"
+              :src="item.image"
+              style="height: 240px;"
+            />
+          </template>
+          <a-card-meta :title="item.name">
+            <!-- <template #description>www.instagram.com</template> -->
+          </a-card-meta>
+        </a-card>        
+      </a-list-item>
+    </template>
+  </a-list>
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
+import axios from "axios";
 import store from "@/store";
 
+const providers = `http://49.0.193.193:8021/api/v1/feed/live_score/provider/list`;
+
 export default defineComponent({
-  setup() {    
+  setup() {
     const router = useRouter();
-    const naxtPage = () => {
+    const initLoading = ref(true);
+    // const loading = ref(false);
+    const data = ref([]);
+    const list = ref([]);
+
+    const onClickSportBet = () => {
       router.push({ name: "SportBet" });
       store.dispatch("actionisHiddenMenuHome", true);
       store.dispatch("actionisHiddenBroker", false);
     };
-    return { naxtPage };
+
+    onMounted(() => {
+      axios.get(providers).then((res) => {
+        initLoading.value = false;
+        data.value = res.data.data.providers;
+        list.value = res.data.data.providers;
+      });
+    });
+
+    return { onClickSportBet, initLoading, data, list };
   },
 });
 </script>
