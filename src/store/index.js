@@ -8,6 +8,7 @@ export default createStore({
     isHiddenBroker: true,
     isHiddenLoginPass: true,
     isHiddenLogin: false,
+    componentTable: "EvenOddTable",
   },
   getters: {
     getleagueId(state) {
@@ -32,6 +33,10 @@ export default createStore({
 
     getisHiddenLogin(state) {
       return state.isHiddenLogin;
+    },
+
+    getcomponentTable(state) {
+      return state.componentTable;
     },
   },
   mutations: {
@@ -58,6 +63,10 @@ export default createStore({
     misHiddenLogin(state, value) {
       state.isHiddenLogin = value;
     },
+
+    mcomponentTable(state, value) {
+      state.componentTable = value;
+    },
   },
   actions: {
     actionleagueId(context, value) {
@@ -82,6 +91,10 @@ export default createStore({
 
     actionisHiddenLogin(context, value) {
       context.commit("misHiddenLogin", value);
+    },
+
+    actioncomponentTable(context, value) {
+      context.commit("mcomponentTable", value);
     },
   },
   modules: {},

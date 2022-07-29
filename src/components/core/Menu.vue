@@ -46,12 +46,22 @@
         <template #title>ฟุตบอลโลก</template>
         <!-- <a-menu-item key="3">ล่วงหน้า วันนี้ สด</a-menu-item> -->
         <a-menu-item key="3">ฟุตบอล</a-menu-item>
-        <a-menu-item key="4">ทั้งหมด</a-menu-item>
-        <a-menu-item key="5">คะแนนที่ถูกต้อง</a-menu-item>
-        <a-menu-item key="6">คู่/คี่</a-menu-item>
-        <a-menu-item key="7">จำนวนรวมของประตู</a-menu-item>
-        <a-menu-item key="8">ครึ่งแรก/เต็มเวลา</a-menu-item>
-        <a-menu-item key="9">ประตูแรก/ประตูสุดท้าย</a-menu-item>
+        <a-menu-item @click="componentTable()" key="4">ทั้งหมด</a-menu-item>
+        <a-menu-item @click="componentTable('CorrectScoreTable')" key="5"
+          >คะแนนที่ถูกต้อง</a-menu-item
+        >
+        <a-menu-item @click="componentTable('EvenOddTable')" key="6"
+          >คู่/คี่</a-menu-item
+        >
+        <a-menu-item @click="componentTable('TotalGoalTable')" key="7"
+          >จำนวนรวมของประตู</a-menu-item
+        >
+        <a-menu-item @click="componentTable('FullHalfTimeTable')" key="8"
+          >ครึ่งแรก/เต็มเวลา</a-menu-item
+        >
+        <a-menu-item @click="componentTable('FirstLastGoalTable')" key="9"
+          >ประตูแรก/ประตูสุดท้าย</a-menu-item
+        >
       </a-sub-menu>
       <a-sub-menu key="sub2">
         <template #icon>
@@ -86,6 +96,8 @@ import {
   UserOutlined,
 } from "@ant-design/icons-vue";
 import { defineComponent, reactive, toRefs } from "vue";
+import {useStore} from "vuex"
+// import store from "@/store";
 
 export default defineComponent({
   components: {
@@ -97,19 +109,27 @@ export default defineComponent({
   },
   props: ["collapsed"],
   setup(props, { emit }) {
+    const store = useStore();
+
     const state = reactive({
       selectedKeys: ["1"],
       openKeys: ["sub1"],
     });
+
     const toggleCollapse = () => {
       emit("update:collapsed", !props.collapsed);
     };
-    return { toggleCollapse, ...toRefs(state) };
+
+    const componentTable = (value) => {
+      store.dispatch("actioncomponentTable", value);
+      console.log(value)
+    };
+
+    return { toggleCollapse, ...toRefs(state), componentTable };
   },
 });
 </script>
 
 <style scoped>
 @import "@/css/styles.css";
-
 </style>
