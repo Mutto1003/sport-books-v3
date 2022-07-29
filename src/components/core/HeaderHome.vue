@@ -19,7 +19,7 @@
           </div>
         </a-col>
         <a-col :span="1" align="end">
-          <a-avatar
+          <!-- <a-avatar
             v-if="!isHiddenLoginPass"
             @click="modal2Visible = true"
             style="background-color: #87d068"
@@ -28,7 +28,28 @@
             <template #icon>
               <UserOutlined @click="modal2Visible = true" />
             </template>
-          </a-avatar>
+          </a-avatar> -->
+
+          <a-dropdown>
+            <a-avatar
+              style="background-color: #87d068"
+              :style="{ margin: '0px' }"
+              class="ant-dropdown-link"
+              v-if="!isHiddenLoginPass"
+              @click.prevent
+            >
+              <template #icon>
+                <UserOutlined />
+              </template>
+            </a-avatar>
+            <template #overlay>
+              <a-menu style="width: 150px" @click="onClickLogout">
+                <a-menu-item key="1">Logout</a-menu-item>
+                <!-- <a-menu-item key="2">2nd menu item</a-menu-item>
+                <a-menu-item key="3">3rd menu item</a-menu-item> -->
+              </a-menu>
+            </template>
+          </a-dropdown>
 
           <a-avatar
             v-if="!isHiddenLogin"
@@ -116,6 +137,8 @@ import {
   UnlockOutlined,
 } from "@ant-design/icons-vue";
 import { defineComponent, ref, reactive, computed } from "vue";
+import { useRouter } from "vue-router";
+import store from "@/store";
 
 export default defineComponent({
   components: {
@@ -124,10 +147,13 @@ export default defineComponent({
     LockOutlined,
     UnlockOutlined,
   },
-  props: ["collapsed",],
+  props: ["collapsed"],
   setup(props, { emit }) {
-    const isHiddenLoginPass = ref(true);
-    const isHiddenLogin = ref(false);
+    // const isHiddenLoginPass = ref(true);
+    // const isHiddenLogin = ref(false);
+    const router = useRouter();
+    const isHiddenLoginPass = computed(() => store.state.isHiddenLoginPass);
+    const isHiddenLogin = computed(() => store.state.isHiddenLogin);
     const toggleCollapse = () => {
       emit("update:collapsed", !props.collapsed);
     };
@@ -157,8 +183,19 @@ export default defineComponent({
     });
 
     const Login = () => {
-      isHiddenLoginPass.value = false;
-      isHiddenLogin.value = true;
+      store.dispatch("actionisHiddenLoginPass", false);
+      store.dispatch("actionisHiddenLogin", true);
+      // isHiddenLoginPass.value = false;
+      // isHiddenLogin.value = true;
+    };
+
+    const onClickLogout = ({ key }) => {
+      // console.log(`Click on item ${key}`);
+      router.push({ name: "home" });
+      store.dispatch("actionisHiddenMenuHome", false);
+      store.dispatch("actionisHiddenBroker", true);
+      store.dispatch("actionisHiddenLoginPass", true);
+      store.dispatch("actionisHiddenLogin", false);
     };
 
     return {
@@ -172,6 +209,7 @@ export default defineComponent({
       isHiddenLoginPass,
       isHiddenLogin,
       Login,
+      onClickLogout
     };
   },
 });

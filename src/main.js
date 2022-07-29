@@ -4,5 +4,7 @@ import router from './router'
 import store from './store'
 import 'ant-design-vue/dist/antd.css'; // or 'ant-design-vue/dist/antd.less'
 import Antd from "ant-design-vue";
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
-createApp(App).use(store).use(router).use(Antd).mount('#app')
+createApp(App).use(store).use(router).use(Antd).use(VueSweetalert2).mount('#app')

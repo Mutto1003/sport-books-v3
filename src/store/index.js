@@ -6,6 +6,8 @@ export default createStore({
     leagueName: "All League",
     isHiddenMenuHome: false,
     isHiddenBroker: true,
+    isHiddenLoginPass: true,
+    isHiddenLogin: false,
   },
   getters: {
     getleagueId(state) {
@@ -22,6 +24,14 @@ export default createStore({
 
     getisHiddenBroker(state) {
       return state.isHiddenBroker;
+    },
+
+    getisHiddenLoginPass(state) {
+      return state.getisHiddenLoginPass;
+    },
+
+    getisHiddenLogin(state) {
+      return state.isHiddenLogin;
     },
   },
   mutations: {
@@ -40,6 +50,14 @@ export default createStore({
     misHiddenBroker(state, value) {
       state.isHiddenBroker = value;
     },
+
+    misHiddenLoginPass(state, value) {
+      state.isHiddenLoginPass = value;
+    },
+
+    misHiddenLogin(state, value) {
+      state.isHiddenLogin = value;
+    },
   },
   actions: {
     actionleagueId(context, value) {
@@ -56,6 +74,14 @@ export default createStore({
 
     actionisHiddenBroker(context, value) {
       context.commit("misHiddenBroker", value);
+    },
+
+    actionisHiddenLoginPass(context, value) {
+      context.commit("misHiddenLoginPass", value);
+    },
+
+    actionisHiddenLogin(context, value) {
+      context.commit("misHiddenLogin", value);
     },
   },
   modules: {},

@@ -74,7 +74,7 @@
               </template>
             </a-avatar>
             <template #overlay>
-              <a-menu style="width: 150px;" @click="onClick">
+              <a-menu style="width: 150px;" @click="onClickLogout">
                 <a-menu-item key="1">Logout</a-menu-item>
                 <!-- <a-menu-item key="2">2nd menu item</a-menu-item>
                 <a-menu-item key="3">3rd menu item</a-menu-item> -->
@@ -120,13 +120,15 @@ export default defineComponent({
       emit("update:collapsed", !props.collapsed);
     };
 
-    const onClick = ({ key }) => {
+    const onClickLogout = ({ key }) => {
       // console.log(`Click on item ${key}`);
       router.push({ name: "home" });
       store.dispatch("actionisHiddenMenuHome", false);
       store.dispatch("actionisHiddenBroker", true);
+      store.dispatch("actionisHiddenLoginPass", true);
+      store.dispatch("actionisHiddenLogin", false);
     };
-    return { toggleCollapse, onClick };
+    return { toggleCollapse, onClickLogout };
   },
 });
 </script>

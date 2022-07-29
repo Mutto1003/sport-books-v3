@@ -54,7 +54,7 @@
         <template style="width: 100px" #actions>
           <a-button
             style="margin-right: 1em"
-            @click="$router.push('/brokerbet')"
+            @click="onClickBet"
             type="primary"
             size="small"
             danger
@@ -111,8 +111,17 @@ import {
 } from "@ant-design/icons-vue";
 import axios from "axios";
 import { useStore } from "vuex";
-import { defineComponent, onMounted, ref, computed, onUpdated } from "vue";
-import moment from 'moment';
+import {
+  defineComponent,
+  onMounted,
+  ref,
+  computed,
+  onUpdated,
+  inject,
+} from "vue";
+import moment from "moment";
+import { useRouter } from "vue-router";
+import Swal from "sweetalert2";
 import store from "@/store";
 // const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
 const livescoreDataUrl = `http://49.0.193.193:8021/api/v1/feed/live_score/list`;
@@ -125,6 +134,8 @@ export default defineComponent({
   },
   setup() {
     const store = useStore();
+    const router = useRouter();
+    const swal = inject("$swal");
     const initLoading = ref(true);
     const loading = ref(false);
     const data = ref([]);
@@ -177,10 +188,31 @@ export default defineComponent({
     };
 
     const setTime = (date) => {
-      let today = date
+      let today = date;
       // console.log(today.toLocaleString("th-TH", { timeZone: "UTC" }));
       // console.log(today);
-      return moment(today).zone("+14:00").format("HH:mm a");;
+      return moment(today).zone("+14:00").format("HH:mm a");
+    };
+
+    const onClickBet = () => {
+      if (store.state.isHiddenLoginPass == false) {
+        router.push({ name: "Brokerbet" });
+      } else {
+        console.log("กรุณากรอกรหัสผ่าน");
+        Swal.fire({
+          title: "Are you sure?",
+          text: "กรุณาเข้าสู่ระบบ",
+          icon: "warning",
+          // showCancelButton: true,
+          confirmButtonColor: "#d33",
+          // cancelButtonColor: "#d33",
+          // confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          }
+        });
+      }
     };
 
     return {
@@ -193,6 +225,7 @@ export default defineComponent({
       onFiterleague,
       onFiterleagueAll,
       setTime,
+      onClickBet,
       // onLoadMore,
     };
   },
